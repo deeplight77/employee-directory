@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeDirectory", "EmployeeDirectory\EmployeeDirectory.csproj", "{77DEDAC0-D0B1-490A-AF9C-EAC6C5120549}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeDirectory.API", "EmployeeDirectory.API\EmployeeDirectory.API.csproj", "{77DEDAC0-D0B1-490A-AF9C-EAC6C5120549}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
