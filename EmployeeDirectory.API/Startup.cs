@@ -22,6 +22,7 @@ namespace EmployeeDirectory.API
             ConfigureOAuth(app);
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
         public void ConfigureOAuth(IAppBuilder app)
