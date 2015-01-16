@@ -1,0 +1,95 @@
+﻿<video autoplay="" loop="" poster="https://archive.org/download/NycTrafficTimeLapse/NycTrafficTimeLapse.thumbs%2FNycTrafficPhotojpeg_000007.jpg" id="bgvid">
+    <source src="https://archive.org/download/NycTrafficTimeLapse/NycTrafficH264.mp4" type="video/mp4">
+    <source src="https://archive.org/download/NycTrafficTimeLapse/NycTrafficH264.ogv" type="video/ogg">
+</video>
+
+<div class="center row">
+    <tabset>
+        <tab heading="Log in">
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="signup-panel">
+                        <p class="welcome">Welcome back!</p>
+                        <form role="form">
+                            <div class="row collapse">
+                                <div class="small-2 columns">
+                                    <span class="prefix"><i class="fi-mail"></i></span>
+                                </div>
+                                <div class="small-10  columns">
+                                    <input type="text" placeholder="Username" data-ng-model="loginData.userName" required autofocus />
+                                </div>
+                            </div>
+                            <div class="row collapse">
+                                <div class="small-2 columns ">
+                                    <span class="prefix"><i class="fi-lock"></i></span>
+                                </div>
+                                <div class="small-10 columns ">
+                                    <input type="text" placeholder="Password" data-ng-model="loginData.password" required />
+                                </div>
+                            </div>
+                            <button class="button" type="submit" data-ng-click="login()">Log in!</button>
+                            <div data-ng-hide="message == ''" class="alert alert-danger">
+                                {{LoginMessage}}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Sign Up">
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="signup-panel">
+                        <p class="welcome">Hello dear employee!</p>
+                        <form>
+                            <div class="row collapse">
+                                <div class="small-2  columns">
+                                    <span class="prefix"><i class="fi-torso"></i></span>
+                                </div>
+                                <div class="small-10  columns">
+                                    <input type="text" placeholder="Username" data-ng-model="registration.userName" required />
+                                </div>
+                            </div>
+                            <div class="row collapse">
+                                <div class="small-2  columns">
+                                    <span class="prefix"><i class="fi-torso"></i></span>
+                                </div>
+                                <div class="small-10  columns">
+                                    <input type="text" placeholder="Full Name" data-ng-model="registration.fullName" required />
+                                </div>
+                            </div>
+                            <div class="row collapse">
+                                <div class="small-2 columns">
+                                    <span class="prefix"><i class="fi-mail"></i></span>
+                                </div>
+                                <div class="small-10  columns">
+                                    <input type="text" placeholder="Email" data-ng-model="registration.email" />
+                                </div>
+                            </div>
+                            <div class="row collapse">
+                                <div class="small-2 columns ">
+                                    <span class="prefix"><i class="fi-lock"></i></span>
+                                </div>
+                                <div class="small-10 columns ">
+                                    <input type="text" placeholder="Password" data-ng-model="registration.password" required />
+                                </div>
+                            </div>
+                            <div class="row collapse">
+                                <div class="small-2 columns ">
+                                    <span class="prefix"><i class="fi-lock"></i></span>
+                                </div>
+                                <div class="small-10 columns ">
+                                    <input type="text" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required />
+                                </div>
+                            </div>
+                            <button class="button" type="submit" data-ng-click="signUp()">Log in!</button>
+                            <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                                {{SignUpMessage}}
+                            </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>

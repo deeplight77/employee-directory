@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeDirectory.API", "EmployeeDirectory.API\EmployeeDirectory.API.csproj", "{77DEDAC0-D0B1-490A-AF9C-EAC6C5120549}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeDirectory.WebApp", "EmployeeDirectory.WebApp\EmployeeDirectory.WebApp.csproj", "{CA922AB1-B6C7-410B-864B-66AFB714DA5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{77DEDAC0-D0B1-490A-AF9C-EAC6C5120549}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77DEDAC0-D0B1-490A-AF9C-EAC6C5120549}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77DEDAC0-D0B1-490A-AF9C-EAC6C5120549}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA922AB1-B6C7-410B-864B-66AFB714DA5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA922AB1-B6C7-410B-864B-66AFB714DA5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA922AB1-B6C7-410B-864B-66AFB714DA5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA922AB1-B6C7-410B-864B-66AFB714DA5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
