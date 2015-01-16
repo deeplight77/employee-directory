@@ -58,8 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\controllers\directoryController.js" />
+    <Content Include="app\views\appMenu.html" />
     <Content Include="app\views\directory.html" />
     <Content Include="content\css\foundation-icons.css" />
+    <Content Include="content\css\hamburger.css" />
     <Content Include="content\fonts\foundation-icons.svg" />
     <Content Include="content\fonts\svgs\fi-address-book.svg" />
     <Content Include="content\fonts\svgs\fi-alert.svg" />

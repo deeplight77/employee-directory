@@ -1,0 +1,85 @@
+﻿.hamburger-wrapper {
+    background-color: #F3F3F3;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    z-index: 999;
+    right: 5px;
+    top: -3px;
+}
+
+.hamburger-wrapper:after {
+    content: "";
+    height: 37px;
+    width: 2px;
+    position: absolute;
+    background: lightgray;
+    top: 7px;
+    left: -5px;
+    border-radius: 2px;
+}
+
+.menu-toggle {
+    position: relative;
+    display: block;
+    margin: auto;
+    height: 22.5px;
+    width: 28px;
+    cursor: pointer;
+    top: 33%;
+}
+
+.menu-toggle .bars {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -2.25px;
+    display: block;
+    width: 28px;
+    height: 4.5px;
+    background: #6B6363;
+    border-radius: 3px;
+    transition: all 0.2s linear;
+}
+
+.menu-toggle .bars:before, .menu-toggle .bars.tenaris-clearfix:after, .menu-toggle .bars:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 28px;
+    height: 4.5px;
+    background: #6B6363;
+    border-radius: 3px;
+    transition: all 0.2s linear;
+}
+
+.menu-toggle .bars:before, .menu-toggle .bars.tenaris-clearfix:after {
+    top: -9px;
+}
+
+.menu-toggle .bars:after {
+    bottom: -9px;
+}
+
+.active .bars {
+    background-color: transparent;
+    transition: all 0.2s linear;
+}
+
+.active .bars:before, .active .bars.tenaris-clearfix:after {
+    top: 0;
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.active .bars:after {
+    bottom: 0;
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}

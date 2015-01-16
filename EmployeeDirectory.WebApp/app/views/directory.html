@@ -1,4 +1,66 @@
-﻿<div>
+﻿<!-- INDEX PAGE WITH HEADER -->
+<div>
+    <!-- OFF-CANVAS WRAPPER FOR APP-MENU -->
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
 
-    More code here
+            <!-- HEADER SECTION -->
+            <header class="row full-width">
+                <div class="small-12 large-2 columns logo-container">
+                    <a href="http://www.headspring.com/" class="show-for-large-up">
+                        <img alt=" " src="http://www.headspring.com/sites/default/files/logo.headspring.png" class="logo-large">
+                    </a>
+                    <a href="http://www.headspring.com/" class="hide-for-large-up">
+                        <img alt="" src="http://www.headspring.com/sites/default/files/logo.headspring.png" class="logo-small">
+                    </a>
+                    <h1 class="hide-for-large-up text-center application-title">Directory</h1>
+
+                    <!-- HAMBURGER ICON -->
+                    <div class="left-off-canvas-toggle hamburger-wrapper hide-for-large-up" ng-class="{active:offCanvasOpened}">
+                        <div class="menu-toggle">
+                            <span class="bars">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-for-large-up large-10 columns title-container">
+                    <h1 class="application-title">Directory</h1>
+                </div>
+            </header>
+
+            <!-- OFF CANVAS MENU -->
+            <aside class="left-off-canvas-menu">
+                <!-- Off-canvas -->
+                <div ng-include="template.directoryMenu"></div>
+            </aside>
+
+            <!-- MAIN CONTENT -->
+            <section class="row full-width main-content">
+                <div class="show-for-large-up large-2 columns directory-menu">
+                    <div ng-include="template.directoryMenu"></div>
+                </div>
+                <div class="small-12 large-3 columns directory-list">
+                    <div class="search-field">
+                        <i class="fi-magnifying-glass"></i>
+                        <form>
+                            <div class="row collapse">
+                                <div class="small-12 columns">
+                                    <input type="text" class="dream-search" placeholder="Search">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="the-list">
+
+                    </div>
+                </div>
+                <div class="show-for-large-up large-7 columns directory-details">
+
+                </div>
+            </section>
+
+            <!-- CLOSE THE OFF-CANVAS MENU -->
+            <a class="exit-off-canvas"></a>
+        </div>
+    </div>
 </div>
