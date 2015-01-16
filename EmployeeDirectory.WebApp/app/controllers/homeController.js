@@ -38,7 +38,7 @@ app.controller('homeController', ['$scope', '$location', 'authService', function
         authService.saveRegistration($scope.registration).then(function (response) {
 
             $scope.savedSuccessfully = true;
-            $scope.SignUpMessage = "User has been registered successfully, you will be redicted to login page in 2 seconds.";
+            $scope.SignUpMessage = "User has been registered successfully, please login.";
             startTimer();
 
         },
@@ -56,7 +56,7 @@ app.controller('homeController', ['$scope', '$location', 'authService', function
     var startTimer = function () {
         var timer = $timeout(function () {
             $timeout.cancel(timer);
-            $location.path('/login');
+            $location.path('/directory');
         }, 2000);
     }
 
