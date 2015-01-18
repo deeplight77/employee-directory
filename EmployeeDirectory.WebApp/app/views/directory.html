@@ -45,17 +45,40 @@
                         <form>
                             <div class="row collapse">
                                 <div class="small-12 columns">
-                                    <input type="text" class="dream-search" placeholder="Search">
+                                    <input type="text" class="dream-search" placeholder="Search" data-ng-model="searchStr" ng-model-options="{debounce: 500}">
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div class="the-list">
-
+                    <div class="the-list" data-infinite-scroll="directory.nextPage(searchStr)" data-infinite-scroll-disabled="directory.busy" data-infinite-scroll-distance="0" data-infinite-scroll-container="'.the-list'">
+                        <ul>
+                            <a ng-click="showDetails($index)" ng-repeat="item in directory.items" ng-class="{active: selectedRow == $index}">
+                                <li class="clearfix">
+                                    <img ng-src="http://api.randomuser.me/portraits/thumb/women/{{$index}}.jpg" alt="thumb" class="thumbnail">
+                                    <h2>{{item.fullName || item.userName}}</h2>
+                                    <p class="desc">{{item.officeLocation}}</p>
+                                    <span class="phone">{{item.officePhoneNumber | phoneNumber}}</span>
+                                    <div class="arrow-button">
+                                        <span></span>
+                                    </div>
+                                </li>
+                            </a>
+                            <li ng-show="directory.busy && directory.loaderShow" class="directory-busy">
+                                <img data-interchange='[/content/images/ajax_loader_large.gif, (small)], [/content/images/ajax_loader_small.gif, (large)]' src='/content/images/ajax_loader_small.gif' title="loading" alt="loading" />
+                                <span class="ajax-loader">Loading data...</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="show-for-large-up large-7 columns directory-details">
+                    <div class="details-switch-container" data-ng-switch data-on="showDetailsSwitch">
+                        <div class="details-switch no-details" ng-switch-when="none">
+                            Select an item from the list of employees to show detailed information.
+                        </div>
+                        <div class="details-switch" ng-switch-when="selected">
 
+                        </div>
+                    </div>
                 </div>
             </section>
 

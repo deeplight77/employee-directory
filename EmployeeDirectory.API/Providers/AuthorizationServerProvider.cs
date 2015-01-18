@@ -22,24 +22,31 @@ namespace EmployeeDirectory.API.Providers
             //Enable CORS
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
+            IdentityUser user = null;
+            List<String> roles = null;
+
             //Validate if username and pass stored in the Database are valid.
             using (AuthRepository _repo = new AuthRepository())
             {
-                IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
+                user = await _repo.FindUser(context.UserName, context.Password);
 
                 if (user == null)
                 {
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
+
+                roles = await _repo.GetRoles(context.UserName);
             }
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));//TODO: Add User role here, not hardcoded
+            ClaimsIdentity identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+            foreach (var role in roles)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, role));
+            }
 
             context.Validated(identity);
-
         }
     }
 }

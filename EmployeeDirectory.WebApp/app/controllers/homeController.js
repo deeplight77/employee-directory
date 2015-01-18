@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('homeController', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
+app.controller('homeController', ['$scope', '$location', 'authService', 'directoryService', '$timeout', function ($scope, $location, authService, directoryService, $timeout) {
 
     /*Login*/
     $scope.loginData = {
@@ -22,25 +22,34 @@ app.controller('homeController', ['$scope', '$location', 'authService', function
     };
 
     /*Sign Up*/
+    $scope.registrationScreen = "first";
+    $scope.signedUpSuccessfully = false;
     $scope.savedSuccessfully = false;
     $scope.SignUpMessage = "";
+    $scope.SavedMessage = "";
 
     $scope.registration = {
         userName: "",
-        fullName: "",
         password: "",
         confirmPassword: "",
-        email: ""
+        roleName: "",
+        fullName: "",
+        officeLocation: "",
+        officePhoneNumber: "",
+        personalPhoneNumber: "",
+        emailAddress: ""
     };
+
+    $scope.continueRegistration = function () {
+        $scope.registrationScreen = "second"
+    }
 
     $scope.signUp = function () {
 
         authService.saveRegistration($scope.registration).then(function (response) {
 
-            $scope.savedSuccessfully = true;
-            $scope.SignUpMessage = "User has been registered successfully, please login.";
-            startTimer();
-
+            $scope.signedUpSuccessfully = true;
+            $scope.SignUpMessage = "Registration successful!! Would you like to continue filling out your personal information?";
         },
          function (response) {
              var errors = [];
@@ -49,9 +58,28 @@ app.controller('homeController', ['$scope', '$location', 'authService', function
                      errors.push(response.data.modelState[key][i]);
                  }
              }
-             $scope.SignUpMessage = "Failed to register user due to:" + errors.join(' ');
+             $scope.SignUpMessage = "Error: " + errors.join(' ');
          });
     };
+
+    $scope.saveUserData = function () {
+        
+        directoryService.saveDirectoryEntry($scope.registration).then(function (response) {
+
+            $scope.savedSuccessfully = true;
+            $scope.SavedMessage = "All your data was saved correctly, you will be redirected in 2 seconds";
+            startTimer();
+        },
+        function (response) {
+            var errors = [];
+            for (var key in response.data.modelState) {
+                for (var i = 0; i < response.data.modelState[key].length; i++) {
+                    errors.push(response.data.modelState[key][i]);
+                }
+            }
+            $scope.SavedMessage = "Error: " + errors.join(' ');
+        });
+    }
 
     var startTimer = function () {
         var timer = $timeout(function () {

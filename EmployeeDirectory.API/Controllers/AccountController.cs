@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -16,6 +17,7 @@ namespace EmployeeDirectory.API.Controllers
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
+        private AuthContext db = new AuthContext();
         private AuthRepository _repo = null;
 
         public AccountController()
@@ -34,6 +36,105 @@ namespace EmployeeDirectory.API.Controllers
             }
 
             IdentityResult result = await _repo.RegisterUser(userModel);
+
+            IHttpActionResult errorResult = GetErrorResult(result);
+
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            /* Add user to role if available */
+
+            if (!string.IsNullOrEmpty(userModel.RoleName))
+            {
+                if (await _repo.IsValidRole(userModel.RoleName))
+                {
+                    IdentityResult roleResult = await _repo.AddUserToRole(userModel, userModel.RoleName);
+
+                    errorResult = GetErrorResult(roleResult);
+
+                    if (errorResult != null)
+                    {
+                        return errorResult;
+                    }
+                }
+            }
+
+            /* Save a Directory Entry for this user as well */
+            db.DirectoryEntryModels.Add(new DirectoryEntryModel() { UserName = userModel.UserName });
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                throw;
+            }
+
+            return Ok();
+        }
+
+        // POST api/Account/Remove
+        [Authorize(Roles = "Admin")]
+        [Route("Remove")]
+        public async Task<IHttpActionResult> Remove(UserModel userModel)
+        {
+            if (!ModelState.IsValidField(userModel.UserName))
+            {
+                return BadRequest(ModelState);
+            }
+
+            IdentityResult result = await _repo.RemoveUser(userModel);
+
+            IHttpActionResult errorResult = GetErrorResult(result);
+
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            /* Remove a Directory Entry for this user as well */
+            DirectoryEntryModel directoryEntryModel = await db.DirectoryEntryModels.FindAsync(userModel.UserName);
+            if (directoryEntryModel == null)
+            {
+                return NotFound();
+            }
+
+            db.DirectoryEntryModels.Remove(directoryEntryModel);
+            await db.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        // GET api/Account/GetRoles
+        [Authorize(Roles = "Admin")]
+        [Route("GetRoles")]
+        public IHttpActionResult GetRoles()
+        {
+            return Ok(_repo.GetRoles());
+        }
+
+        // GET api/Account/GetRoles
+        [Authorize]
+        [Route("GetRoles")]
+        public async Task<IHttpActionResult> GetRoles(string userName)
+        {
+            return Ok(await _repo.GetRoles(userName));
+        }
+
+        // POST api/Account/AddRole
+        [Authorize(Roles = "Admin")]
+        [Route("AddRole")]
+        public async Task<IHttpActionResult> AddRole(UserModel userModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IdentityResult result = await _repo.AddUserToRole(userModel, userModel.RoleName);
 
             IHttpActionResult errorResult = GetErrorResult(result);
 

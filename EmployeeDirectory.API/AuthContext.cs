@@ -16,5 +16,7 @@ namespace EmployeeDirectory.API
         {
 
         }
+
+        public System.Data.Entity.DbSet<EmployeeDirectory.API.Models.DirectoryEntryModel> DirectoryEntryModels { get; set; }
     }
 }

@@ -6,7 +6,8 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
 
     var _authentication = {
         isAuth: false,
-        userName: ""
+        userName: "",
+        roles: []
     };
 
     var _saveRegistration = function (registration) {
@@ -14,9 +15,18 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
         _logOut();
 
         return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
+
+            _login(registration);
             return response;
         });
+    };
 
+    var _deleteRegistration = function (registration) {
+
+        return $http.post(serviceBase + 'api/account/remove', registration).then(function (response) {
+
+            return response;
+        });
     };
 
     var _login = function (loginData) {
@@ -27,12 +37,22 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
 
         $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 
-            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
+            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, roles: [] });
 
-            _authentication.isAuth = true;
-            _authentication.userName = loginData.userName;
+            _getRoles(loginData.userName).then(function (results) {
 
-            deferred.resolve(response);
+                localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, roles: results.data })
+
+                _authentication.isAuth = true;
+                _authentication.userName = loginData.userName;
+                _authentication.roles = results.data;
+
+                deferred.resolve(response);
+            },
+            function (error) {
+                _logOut();
+                deferred.reject(err);
+            });
 
         }).error(function (err, status) {
             _logOut();
@@ -40,7 +60,13 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
         });
 
         return deferred.promise;
+    };
 
+    var _getRoles = function (userName) {
+
+        return $http.get(serviceBase + 'api/account/getroles?userName=' + userName).then(function (results) {
+            return results;
+        });
     };
 
     var _logOut = function () {
@@ -49,7 +75,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
 
         _authentication.isAuth = false;
         _authentication.userName = "";
-
+        _authentication.roles = [];
     };
 
     var _fillAuthData = function () {
@@ -58,11 +84,13 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
         if (authData) {
             _authentication.isAuth = true;
             _authentication.userName = authData.userName;
+            _authentication.roles = authData.roles;
         }
-
     }
 
+    authServiceFactory.getRoles = _getRoles;
     authServiceFactory.saveRegistration = _saveRegistration;
+    authServiceFactory.deleteRegistration = _deleteRegistration;
     authServiceFactory.login = _login;
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;

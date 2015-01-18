@@ -1,5 +1,5 @@
 ﻿.hamburger-wrapper {
-    background-color: #F3F3F3;
+    background-color: transparent;
     height: 45px;
     width: 45px;
     position: absolute;
@@ -37,7 +37,7 @@
     display: block;
     width: 28px;
     height: 4.5px;
-    background: #6B6363;
+    background: lightgray;
     border-radius: 3px;
     transition: all 0.2s linear;
 }
@@ -48,7 +48,7 @@
     display: block;
     width: 28px;
     height: 4.5px;
-    background: #6B6363;
+    background: lightgray;
     border-radius: 3px;
     transition: all 0.2s linear;
 }

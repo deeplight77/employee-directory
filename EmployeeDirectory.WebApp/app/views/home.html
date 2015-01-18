@@ -24,7 +24,7 @@
                                     <span class="prefix"><i class="fi-lock"></i></span>
                                 </div>
                                 <div class="small-10 columns ">
-                                    <input type="text" placeholder="Password" data-ng-model="loginData.password" required />
+                                    <input type="password" placeholder="Password" data-ng-model="loginData.password" required />
                                 </div>
                             </div>
                             <button class="button" type="submit" data-ng-click="login()">Log in!</button>
@@ -41,53 +41,103 @@
                 <div class="large-12 columns">
                     <div class="signup-panel">
                         <p class="welcome">Hello dear employee!</p>
-                        <form>
-                            <div class="row collapse">
-                                <div class="small-2  columns">
-                                    <span class="prefix"><i class="fi-torso"></i></span>
+                        <div class="animate-switch-container" data-ng-switch data-on="registrationScreen">
+                            <form class="animate-switch" ng-switch-when="first">
+                                <div class="row collapse">
+                                    <div class="small-2  columns">
+                                        <span class="prefix"><i class="fi-torso"></i></span>
+                                    </div>
+                                    <div class="small-10  columns">
+                                        <input type="text" placeholder="Username" data-ng-model="registration.userName" required />
+                                    </div>
                                 </div>
-                                <div class="small-10  columns">
-                                    <input type="text" placeholder="Username" data-ng-model="registration.userName" required />
+                                <div class="row collapse">
+                                    <div class="small-2 columns ">
+                                        <span class="prefix"><i class="fi-lock"></i></span>
+                                    </div>
+                                    <div class="small-10 columns ">
+                                        <input type="password" placeholder="Password" data-ng-model="registration.password" required />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row collapse">
-                                <div class="small-2  columns">
-                                    <span class="prefix"><i class="fi-torso"></i></span>
+                                <div class="row collapse">
+                                    <div class="small-2 columns ">
+                                        <span class="prefix"><i class="fi-lock"></i></span>
+                                    </div>
+                                    <div class="small-10 columns ">
+                                        <input type="password" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required />
+                                    </div>
                                 </div>
-                                <div class="small-10  columns">
-                                    <input type="text" placeholder="Full Name" data-ng-model="registration.fullName" required />
+                                <div class="row collapse">
+                                    <div class="small-2 columns">
+                                        <span class="prefix"><i class="fi-results-demographics"></i></span>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <select name="RoleName" data-ng-model="registration.roleName" required>
+                                            <option value="" disabled selected style='display:none;'>User Role</option>
+                                            <option value="" selected>User</option>
+                                            <option value="Admin">Admin</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row collapse">
-                                <div class="small-2 columns">
-                                    <span class="prefix"><i class="fi-mail"></i></span>
+                                <button class="button" type="submit" ng-show="!signedUpSuccessfully" data-ng-click="signUp()">Sign Up</button>
+                                <div data-ng-hide="message == ''" data-ng-class="(signedUpSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                                    {{SignUpMessage}}
                                 </div>
-                                <div class="small-10  columns">
-                                    <input type="text" placeholder="Email" data-ng-model="registration.email" />
+                                <button class="button" type="submit" ng-show="signedUpSuccessfully" data-ng-click="continueRegistration()">Continue</button>
+                                <a class="button" ng-show="signedUpSuccessfully" href="#/directory">No, just take me to the app</a>
+                            </form>
+                            <form class="animate-switch" ng-switch-when="second">
+                                <div class="row collapse">
+                                    <div class="small-2 columns">
+                                        <span class="prefix"><i class="fi-torso"></i></span>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input type="text" placeholder="Full Name" data-ng-model="registration.fullName" required />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row collapse">
-                                <div class="small-2 columns ">
-                                    <span class="prefix"><i class="fi-lock"></i></span>
+                                <div class="row collapse">
+                                    <div class="small-2 columns">
+                                        <span class="prefix"><i class="fi-marker"></i></span>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <select name="OfficeLocation" data-ng-model="registration.officeLocation" required>
+                                            <option value="" disabled selected style='display:none;'>Office Location</option>
+                                            <option value="Houston" selected>Houston</option>
+                                            <option value="Austin">Austin</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="small-10 columns ">
-                                    <input type="text" placeholder="Password" data-ng-model="registration.password" required />
+                                <div class="row collapse">
+                                    <div class="small-2 columns">
+                                        <span class="prefix"><i class="fi-telephone"></i></span>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input type="text" placeholder="Office Phone Number" data-ng-model="registration.officePhoneNumber" required />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row collapse">
-                                <div class="small-2 columns ">
-                                    <span class="prefix"><i class="fi-lock"></i></span>
+                                <div class="row collapse">
+                                    <div class="small-2 columns">
+                                        <span class="prefix"><i class="fi-telephone"></i></span>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input type="text" placeholder="Personal Phone Number" data-ng-model="registration.personalPhoneNumber" />
+                                    </div>
                                 </div>
-                                <div class="small-10 columns ">
-                                    <input type="text" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required />
+                                <div class="row collapse">
+                                    <div class="small-2 columns">
+                                        <span class="prefix"><i class="fi-mail"></i></span>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <input type="text" placeholder="Email" data-ng-model="registration.email" />
+                                    </div>
                                 </div>
-                            </div>
-                            <button class="button" type="submit" data-ng-click="signUp()">Log in!</button>
-                            <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
-                                {{SignUpMessage}}
-                            </div>
-                    </form>
-                </div>
+                                <button class="button" type="submit" data-ng-click="saveUserData()">Save</button>
+                                <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                                    {{SavedMessage}}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </tab>

@@ -8,7 +8,7 @@
     <link href="content/css/foundation-icons.css" rel="stylesheet" />
     <link href="content/css/hamburger.css" rel="stylesheet" />
     <link href="content/css/site.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 </head>
 <body>
     <div class="container">
@@ -16,9 +16,11 @@
         </div>
     </div>
     <!-- 3rd party libraries -->
+    <script src="scripts/jquery-2.1.3.min.js"></script>
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/angular-route.min.js"></script>
     <script src="scripts/angular-local-storage.min.js"></script>
+    <script src="scripts/ng-infinite-scroll.min.js"></script>
     <script src="scripts/mm-foundation-tpls-0.5.1.min.js"></script>
     <!-- Load app main script -->
     <script src="app/app.js"></script>
@@ -27,8 +29,8 @@
     <script src="app/services/authService.js"></script>
     <script src="app/services/directoryService.js"></script>
     <!-- Load controllers -->
-    <script src="app/controllers/indexController.js"></script>
     <script src="app/controllers/homeController.js"></script>
     <script src="app/controllers/directoryController.js"></script>
+    <script src="app/controllers/modalDeleteController.js"></script>
 </body>
 </html>
