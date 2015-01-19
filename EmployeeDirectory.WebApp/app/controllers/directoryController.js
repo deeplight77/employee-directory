@@ -91,6 +91,7 @@ app.controller('directoryController', ['$scope', '$window', '$modal', '$location
 
             directoryService.saveDirectoryEntry(userData).then(function (response) {
 
+                $scope.directory.items[$scope.selectedRow] = userData;
                 alert("Everything saved correctly!!");
             },
             function (response) {

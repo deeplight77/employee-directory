@@ -10,7 +10,8 @@ app.controller('modalUserController', function ($scope, $modalInstance, item) {
         officeLocation: "",
         officePhoneNumber: "",
         personalPhoneNumber: "",
-        emailAddress: ""
+        emailAddress: "",
+        jobTitle: ""
     };
 
     $scope.ok = function () {
