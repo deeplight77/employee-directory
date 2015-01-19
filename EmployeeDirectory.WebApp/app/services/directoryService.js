@@ -19,11 +19,9 @@ app.factory('directoryService', ['$http', function ($http) {
         });
     }
 
-    var _getDirectory = function () {
+    var _getDirectory = function (userName) {
 
-        return $http.get(serviceBase + 'api/directory').then(function (results) {
-            return results;
-        });
+        return $http.get(serviceBase + "api/directory?from=" + 0 + "&howMany=" + 1 + "&filter=" + userName);
     };
 
     var _nextPage = function (filter) {
