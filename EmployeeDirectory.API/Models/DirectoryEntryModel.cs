@@ -18,6 +18,9 @@ namespace EmployeeDirectory.API.Models
         [Display(Name = "Office Location")]
         public string OfficeLocation { get; set; }
 
+        [Display(Name = "Job Title")]
+        public string JobTitle { get; set; }
+
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Office Phone Number")]
         [Phone(ErrorMessage = "Please add a correct phone number in the form (xxx) xxx-xxxx.")]

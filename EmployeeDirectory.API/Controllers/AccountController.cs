@@ -62,7 +62,7 @@ namespace EmployeeDirectory.API.Controllers
             }
 
             /* Save a Directory Entry for this user as well */
-            db.DirectoryEntryModels.Add(new DirectoryEntryModel() { UserName = userModel.UserName });
+            db.DirectoryEntryModels.Add(new DirectoryEntryModel() { UserName = userModel.UserName, JobTitle = userModel.RoleName });
 
             try
             {

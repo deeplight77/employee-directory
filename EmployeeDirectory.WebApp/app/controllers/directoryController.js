@@ -21,7 +21,7 @@ app.controller('directoryController', ['$scope', '$window', '$modal', '$location
 
     directoryService.getDirectory($scope.authentication.userName).success(function (results) {
 
-        var myProfile = results.length > 0 ? results[0] : {};
+        var myProfile = $scope.myProfile = results.length > 0 ? results[0] : {};
         var url = "http://api.randomuser.me/portraits/";
         if (myProfile.gender == "female") {
             $scope.myUserImageS = url + "med/women/54.jpg";
@@ -107,35 +107,30 @@ app.controller('directoryController', ['$scope', '$window', '$modal', '$location
 
     $scope.modifyMe = function () {
         
-        directoryService.getDirectory($scope.authentication.userName).success(function (results) {
+        var modalInstance = $modal.open({
+            templateUrl: '/app/views/modalUser.html',
+            controller: 'modalUserController',
+            resolve: {
+                item: function () {
+                    return $scope.myProfile;
+                }
+            }
+        });
 
-            var myItem = results.length > 0 ? results[0] : null;
+        modalInstance.result.then(function (userData) {
 
-            var modalInstance = $modal.open({
-                templateUrl: '/app/views/modalUser.html',
-                controller: 'modalUserController',
-                resolve: {
-                    item: function () {
-                        return myItem;
+            directoryService.saveDirectoryEntry(userData).then(function (response) {
+
+                alert("Everything saved correctly!!");
+            },
+            function (response) {
+                var errors = [];
+                for (var key in response.data.modelState) {
+                    for (var i = 0; i < response.data.modelState[key].length; i++) {
+                        errors.push(response.data.modelState[key][i]);
                     }
                 }
-            });
-
-            modalInstance.result.then(function (userData) {
-
-                directoryService.saveDirectoryEntry(userData).then(function (response) {
-
-                    alert("Everything saved correctly!!");
-                },
-                function (response) {
-                    var errors = [];
-                    for (var key in response.data.modelState) {
-                        for (var i = 0; i < response.data.modelState[key].length; i++) {
-                            errors.push(response.data.modelState[key][i]);
-                        }
-                    }
-                    $scope.SavedMessage = "Error: " + errors.join(' ');
-                });
+                $scope.SavedMessage = "Error: " + errors.join(' ');
             });
         });
     }
