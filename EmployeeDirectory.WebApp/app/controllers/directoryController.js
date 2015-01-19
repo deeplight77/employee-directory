@@ -19,6 +19,77 @@ app.controller('directoryController', ['$scope', '$window', '$modal', '$location
         $location.path('/home');
     }
 
+    $scope.add = function () {
+        var modalInstance = $modal.open({
+            templateUrl: '/app/views/modalUser.html',
+            controller: 'modalUserController',
+            resolve: {
+                item: function () {
+                    return null;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (userData) {
+
+            authService.saveRegistrationData(userData).then(function () {
+                
+                directoryService.saveDirectoryEntry(userData).then(function (response) {
+
+                    alert("Everything saved correctly!!");
+                    $scope.directory.items.push(userData);
+                },
+                function (response) {
+                    var errors = [];
+                    for (var key in response.data.modelState) {
+                        for (var i = 0; i < response.data.modelState[key].length; i++) {
+                            errors.push(response.data.modelState[key][i]);
+                        }
+                    }
+                    $scope.SavedMessage = "Error: " + errors.join(' ');
+                });
+            });
+        });
+    }
+
+    $scope.modify = function () {
+        if ($scope.selectedRow == null) {
+            alert("Please select an employee from the list to update information");
+            return;
+        }
+
+        var modalInstance = $modal.open({
+            templateUrl: '/app/views/modalUser.html',
+            controller: 'modalUserController',
+            resolve: {
+                item: function () {
+                    return $scope.directory.items[$scope.selectedRow];
+                }
+            }
+        });
+
+        modalInstance.result.then(function (userData) {
+
+            directoryService.saveDirectoryEntry(userData).then(function (response) {
+
+                alert("Everything saved correctly!!");
+            },
+            function (response) {
+                var errors = [];
+                for (var key in response.data.modelState) {
+                    for (var i = 0; i < response.data.modelState[key].length; i++) {
+                        errors.push(response.data.modelState[key][i]);
+                    }
+                }
+                $scope.SavedMessage = "Error: " + errors.join(' ');
+            });
+        });
+    }
+
+    $scope.modifyMe = function () {
+
+    }
+
     $scope.delete = function () {
         if ($scope.selectedRow == null) {
             alert("Please select an employee from the list to allow deletion");
@@ -39,7 +110,7 @@ app.controller('directoryController', ['$scope', '$window', '$modal', '$location
 
             authService.deleteRegistration(item).then(function () {
                 alert("User deleted successfully");
-                delete $scope.directory.items[$scope.selectedRow];
+                $scope.directory.items.splice($scope.selectedRow, 1);
             });
         });
     }

@@ -59,6 +59,8 @@
   <ItemGroup>
     <Content Include="app\controllers\directoryController.js" />
     <Content Include="app\controllers\modalDeleteController.js" />
+    <Content Include="app\controllers\modalUserController.js" />
+    <Content Include="app\views\modalUser.html" />
     <Content Include="app\views\appMenu.html" />
     <Content Include="app\views\details.html" />
     <Content Include="app\views\detailsMobile.html" />
@@ -351,6 +353,8 @@
     <Content Include="content\fonts\svgs\fi-yen.svg" />
     <Content Include="content\fonts\svgs\fi-zoom-in.svg" />
     <Content Include="content\fonts\svgs\fi-zoom-out.svg" />
+    <Content Include="content\images\ajax_loader_large.gif" />
+    <Content Include="content\images\ajax_loader_small.gif" />
     <Content Include="scripts\angular.min.js.map" />
     <Content Include="packages.config" />
     <Content Include="scripts\angular-route.min.js.map" />

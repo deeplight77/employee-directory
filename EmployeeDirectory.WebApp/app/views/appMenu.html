@@ -2,11 +2,11 @@
 <ul class="off-canvas-list">
     <li><label><i class="fi-torso"></i>My profile</label></li>
     <li><a ng-click="logOut()"><i class="fi-power"></i>LogOut</a></li>
-    <li><a href="#"><i class="fi-widget"></i>Edit my profile</a></li>
-    <div ng-show="authentication.roles.indexOf('Admin') > -1">
+    <li><a ng-click="modifyMe()"><i class="fi-widget"></i>Edit my profile</a></li>
+    <div ng-show="authentication.roles.indexOf('Admin') > -1 || authentication.roles.indexOf('HR') > -1">
         <li><label><i class="fi-list-thumbnails"></i>HR Tasks</label></li>
-        <li><a href="#"><i class="fi-plus"></i>Add Employee</a></li>
-        <li><a href="#"><i class="fi-pencil"></i>Modify Employee</a></li>
+        <li><a ng-click="add()"><i class="fi-plus"></i>Add Employee</a></li>
+        <li><a ng-click="modify()"><i class="fi-pencil"></i>Modify Employee</a></li>
         <li><a ng-click="delete()"><i class="fi-trash"></i>Delete Employee</a></li>
     </div>
 </ul>

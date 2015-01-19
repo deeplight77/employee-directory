@@ -15,6 +15,10 @@ body {
   overflow: hidden;
 }
 
+.row {
+    max-width: 100%
+}
+
 /*Sign Up Screen*/
 video {
     position: fixed;
@@ -138,7 +142,7 @@ p.title {
    max-width: initial;
 }
 
-.application-title{  
+.application-title {  
 	font-size: 2rem;
 	line-height: 2.4rem;
     color: #efefef;
@@ -524,6 +528,7 @@ input[type="text"].dream-search:focus {
 
     .application-title{  
 	    font-size: 6rem;
+        line-height: 6rem;
 	    color: lightcoral;
         line-height: initial;
     }

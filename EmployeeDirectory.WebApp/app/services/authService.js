@@ -10,6 +10,14 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
         roles: []
     };
 
+    var _saveRegistrationData = function (registration) {
+
+        return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
+
+            return response;
+        });
+    };
+
     var _saveRegistration = function (registration) {
 
         _logOut();
@@ -23,9 +31,12 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
 
     var _deleteRegistration = function (registration) {
 
-        return $http.post(serviceBase + 'api/account/remove', registration).then(function (response) {
+        return $http.post(serviceBase + 'api/account/remove', registration).success(function (response) {
 
             return response;
+        })
+        .error(function (err) {
+            alert(err.message)
         });
     };
 
@@ -90,6 +101,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', function ($htt
     }
 
     authServiceFactory.getRoles = _getRoles;
+    authServiceFactory.saveRegistrationData = _saveRegistrationData;
     authServiceFactory.saveRegistration = _saveRegistration;
     authServiceFactory.deleteRegistration = _deleteRegistration;
     authServiceFactory.login = _login;

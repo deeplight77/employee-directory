@@ -6,7 +6,7 @@
                     <img ng-src='http://api.randomuser.me/portraits/women/{{selectedRow}}.jpg' title="Profile image" alt="Me" class="profile-image" />
                 </div>
                 <div class="small-7 large-8 columns">
-                    <h4>{{selectedItem.fullName || selectedItem.userName | properCase}} <span>{{selectedItem.officeLocation || 'Houston'}}</span></h4>
+                    <h4>{{selectedItem.fullName || selectedItem.userName | properCase}} <span>{{selectedItem.officeLocation || '[HQ]'}}</span></h4>
                     <p><i class="fi-clock"></i><span> Available until 17:00 </span></p>
                     <p><i class="fi-mail"></i><span> {{selectedItem.emailAddress || 'No email address'}} </span></p>
                     <p><i class="fi-telephone"></i>{{selectedItem.officePhoneNumber || 'No office phone' | phoneNumber}}</p>

@@ -1,0 +1,65 @@
+﻿<h3 ng-show ="userData.userName != ''">Update employee: </h3><h3>{{ userData.fullName || userData.userName || 'Add new employee' }}</h3>
+<div class="signup-panel">
+    <form>
+        <div class="row collapse">
+            <div class="small-2 columns">
+                <span class="prefix"><i class="fi-torso"></i></span>
+            </div>
+            <div class="small-10 columns">
+                <input type="text" placeholder="Full Name" data-ng-model="userData.fullName" required />
+            </div>
+        </div>
+        <div class="row collapse">
+            <div class="small-2 columns">
+                <span class="prefix"><i class="fi-marker"></i></span>
+            </div>
+            <div class="small-10 columns">
+                <select name="OfficeLocation" data-ng-model="userData.officeLocation" required>
+                    <option value="" disabled selected style='display:none;'>Select Office Location</option>
+                    <option value="Houston" selected>Houston</option>
+                    <option value="Austin">Austin</option>
+                </select>
+            </div>
+        </div>
+        <div class="row collapse">
+            <div class="small-2 columns">
+                <span class="prefix"><i class="fi-telephone"></i></span>
+            </div>
+            <div class="small-10 columns">
+                <input type="text" placeholder="Office Phone Number" data-ng-model="userData.officePhoneNumber" required />
+            </div>
+        </div>
+        <div class="row collapse">
+            <div class="small-2 columns">
+                <span class="prefix"><i class="fi-telephone"></i></span>
+            </div>
+            <div class="small-10 columns">
+                <input type="text" placeholder="Personal Phone Number" data-ng-model="userData.personalPhoneNumber" />
+            </div>
+        </div>
+        <div class="row collapse">
+            <div class="small-2 columns">
+                <span class="prefix"><i class="fi-mail"></i></span>
+            </div>
+            <div class="small-10 columns">
+                <input type="text" placeholder="Email" data-ng-model="userData.emailAddress" />
+            </div>
+        </div>
+        <div class="row collapse" ng-show="userData.userName == ''">
+            <div class="small-2 columns">
+                <span class="prefix"><i class="fi-results-demographics"></i></span>
+            </div>
+            <div class="small-10 columns">
+                <select name="RoleName" data-ng-model="userData.roleName" required>
+                    <option value="" disabled selected style='display:none;'>Select User Role</option>
+                    <option value="" selected>Consultant</option>
+                    <option value="HR" selected>Human Resources</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+<button class="button" ng-click="ok()">Save</button>
+<button class="button" ng-click="cancel()">Cancel</button>
+<a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
