@@ -58,10 +58,6 @@ namespace EmployeeDirectory.API
             {
                 connection.Open();
 
-                //string sql = "ALTER DATABASE [EmployeeDirectory] SET SINGLE_USER WITH ROLLBACK IMMEDIATE";
-                //SqlCommand command = new SqlCommand(sql, connection);
-                //command.ExecuteNonQuery();
-
                 //sql = "DROP DATABASE [EmployeeDirectory]";
                 //command = new SqlCommand(sql, connection);
                 //command.ExecuteNonQuery();
@@ -99,6 +95,22 @@ namespace EmployeeDirectory.API
                         "Fields", "Gutierrez", "Ryan", "Schmidt", "Carr", "Vasquez", "Castillo", "Wheeler", "Chapman", "Oliver", "Montgomery", "Richards", "Williamson", "Johnston", "Banks", "Meyer", "Bishop", "Mccoy", "Howell", "Alvarez", "Morrison", "Hansen", "Fernandez", "Garza", "Harvey", "Little", "Burton", "Stanley", "Nguyen", "George", "Jacobs", "Reid", "Kim", "Fuller", "Lynch", "Dean", "Gilbert", "Garrett" };
 
                 List<string> offices = new List<string>() { "Houston", "Austin" };
+
+                for (int i = 0; i < 15000; i++)
+                {
+                    DirectoryEntryModel Entry = new DirectoryEntryModel()
+                    {
+                        UserName = string.Format("user{0}", i.ToString("D5")),
+                        FullName = string.Format("{0} {1}", girlNames[rand.Next(0, 99)], surnames[rand.Next(0, 237)]),
+                        OfficeLocation = offices[rand.Next(0, 1)],
+                        OfficePhoneNumber = string.Format("713{0}", rand.Next(0000000, 9990000)),
+                        PersonalPhoneNumber = "",
+                        EmailAddress = string.Format("user{0}@headspring.com", i.ToString("D5")),
+                        Gender = "female"
+                    };
+
+                    _db.DirectoryEntryModels.Add(Entry);
+                }
 
                 for (int i = 15000; i < 30000; i++)
                 {
