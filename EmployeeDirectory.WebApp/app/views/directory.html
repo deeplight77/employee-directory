@@ -29,8 +29,8 @@
                             </div>
                         </form>
                     </div>
-                    <div class="the-list" data-infinite-scroll="directory.nextPage(searchStr)" data-infinite-scroll-disabled="directory.busy" data-infinite-scroll-distance="0" data-infinite-scroll-container="'.the-list'">
-                        <ul>
+                    <div class="the-list">
+                        <ul data-infinite-scroll="directory.nextPage(searchStr)" data-infinite-scroll-disabled="directory.busy" data-infinite-scroll-distance="0" data-infinite-scroll-container="'.the-list'">
                             <a ng-click="showDetails($index)" ng-repeat="item in directory.items" ng-class="{active: selectedRow == $index}">
                                 <li class="clearfix">
                                     <img ng-src="http://api.randomuser.me/portraits/thumb/women/{{$index}}.jpg" alt="thumb" class="thumbnail">
