@@ -28,7 +28,7 @@ app.factory('directoryService', ['$http', function ($http) {
         if (this.busy) return;
         this.busy = true;
 
-        var url = serviceBase + "api/directory?from=" + this.from + "&howMany=" + 5 + "&filter=" + filter;
+        var url = serviceBase + "api/directory?from=" + this.from + "&howMany=" + 7 + "&filter=" + filter;
 
         $http.get(url).success(function (data) {
 

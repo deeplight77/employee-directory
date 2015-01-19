@@ -1,6 +1,6 @@
-﻿<video autoplay="" loop="" poster="https://archive.org/download/NycTrafficTimeLapse/NycTrafficTimeLapse.thumbs%2FNycTrafficPhotojpeg_000007.jpg" id="bgvid">
-    <source src="https://archive.org/download/NycTrafficTimeLapse/NycTrafficH264.mp4" type="video/mp4">
-    <source src="https://archive.org/download/NycTrafficTimeLapse/NycTrafficH264.ogv" type="video/ogg">
+﻿<video autoplay="" loop="" poster="http://d3thflcq1yqzn0.cloudfront.net/035230548_prevstill.jpeg" id="bgvid">
+    <source src="http://p5cdnp.s3.amazonaws.com/035230548_main_xl.mp4?response-content-disposition=attachment%3B%20filename%3D035230548-businessman-using-smartphone-s.mp4&response-content-type=application%2Foctet-stream&AWSAccessKeyId=AKIAJB3QARZ5P2LRT7KQ&Expires=1421732075&Signature=t4RinccaQp1rn%2BUcwJCEjok7eZc%3D" type="video/mp4">
+    <source src="https://www.dropbox.com/s/3zo6ipypx8wkxan/010587596_smartphone.ogv" type="video/ogg">
 </video>
 
 <div class="center row">
@@ -130,6 +130,18 @@
                                     </div>
                                     <div class="small-10 columns">
                                         <input type="text" placeholder="Email" data-ng-model="registration.emailAddress" />
+                                    </div>
+                                </div>
+                                <div class="row collapse">
+                                    <div class="small-2 columns">
+                                        <span class="prefix"><i class="fi-torsos-female-male"></i></span>
+                                    </div>
+                                    <div class="small-10 columns">
+                                        <select name="Gender" data-ng-model="registration.gender" required>
+                                            <option value="" disabled selected style='display:none;'>Select Gender</option>
+                                            <option value="female" selected>Female</option>
+                                            <option value="male" selected>Male</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <button class="button" type="submit" data-ng-click="saveUserData()">Save</button>

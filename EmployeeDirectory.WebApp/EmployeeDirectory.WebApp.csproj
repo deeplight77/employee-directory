@@ -364,6 +364,7 @@
     <Content Include="content\fonts\foundation-icons.ttf" />
     <Content Include="content\fonts\foundation-icons.woff" />
     <Content Include="content\fonts\nevis.ttf" />
+    <None Include="Properties\PublishProfiles\localPublish.pubxml" />
     <None Include="scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="scripts\jquery-2.1.3.js" />
     <Content Include="scripts\jquery-2.1.3.min.js" />

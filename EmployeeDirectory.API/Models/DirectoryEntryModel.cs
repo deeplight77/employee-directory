@@ -28,5 +28,8 @@ namespace EmployeeDirectory.API.Models
 
         [Display(Name = "Email")]
         public string EmailAddress { get; set; }
+
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
     }
 }

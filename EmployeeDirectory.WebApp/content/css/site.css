@@ -32,6 +32,11 @@ video {
     background-size: cover;
 }
 
+@media screen and (max-device-width: 800px) {
+    html { background: url(http://d3thflcq1yqzn0.cloudfront.net/035230548_prevstill.jpeg) #000 no-repeat center center fixed; }
+    video { display: none; }
+}
+
 .overlay {
     width: 400px;
     height: 400px;
@@ -48,7 +53,8 @@ video {
 .tabs-content {
     margin-bottom: 1.5rem;
     width: 100%;
-    background: rgba(255,255,255,0.5);
+    /*background: rgba(0,0,0,0.5);*/
+    background: rgba(49,49,49,.7)
 }
 
 .row.center {
@@ -78,6 +84,7 @@ video {
     font-size: 26px;
     text-align: center;
     margin-left: 0;
+    color: #fff;
 }
 
 .signup-panel .button {

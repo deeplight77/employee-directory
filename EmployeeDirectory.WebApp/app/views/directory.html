@@ -33,7 +33,7 @@
                         <ul data-infinite-scroll="directory.nextPage(searchStr)" data-infinite-scroll-disabled="directory.busy" data-infinite-scroll-distance="0" data-infinite-scroll-container="'.the-list'">
                             <a ng-click="showDetails($index)" ng-repeat="item in directory.items" ng-class="{active: selectedRow == $index}">
                                 <li class="clearfix">
-                                    <img ng-src="http://api.randomuser.me/portraits/thumb/women/{{$index}}.jpg" alt="thumb" class="thumbnail">
+                                    <img ng-src="http://api.randomuser.me/portraits/thumb/{{ item.gender == 'female' ? 'women' : 'men' }}/{{$index}}.jpg" alt="thumb" class="thumbnail">
                                     <h2>{{item.fullName || item.userName | properCase}}</h2>
                                     <p class="desc">{{item.officeLocation || 'Houston'}}</p>
                                     <span class="phone">{{item.officePhoneNumber || 'No office phone' | phoneNumber}}</span>

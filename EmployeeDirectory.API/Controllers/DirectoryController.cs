@@ -30,8 +30,8 @@ namespace EmployeeDirectory.API.Controllers
         public IQueryable<DirectoryEntryModel> GetDirectoryEntryModels(int from, int howMany, string filter)
         {
             IQueryable<DirectoryEntryModel> dbSet = filter == null
-                ? db.DirectoryEntryModels.OrderBy(d => d.UserName).Skip(from).Take(howMany)
-                : db.DirectoryEntryModels.Where(d => d.UserName.Contains(filter) || d.FullName.Contains(filter)).OrderBy(d => d.UserName).Skip(from).Take(howMany);
+                ? db.DirectoryEntryModels.OrderBy(d => d.FullName).Skip(from).Take(howMany)
+                : db.DirectoryEntryModels.Where(d => d.UserName.Contains(filter) || d.FullName.Contains(filter)).OrderBy(d => d.FullName).Skip(from).Take(howMany);
 
             return dbSet;
         }

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="profile-card">
                 <div class="small-5 large-4 columns">
-                    <img ng-src='http://api.randomuser.me/portraits/women/{{selectedRow}}.jpg' title="Profile image" alt="Me" class="profile-image" />
+                    <img ng-src="http://api.randomuser.me/portraits/{{ selectedItem.gender == 'female' ? 'women' : 'men' }}/{{selectedRow}}.jpg" title="Profile image" alt="Me" class="profile-image" />
                 </div>
                 <div class="small-7 large-8 columns">
                     <h4>{{selectedItem.fullName || selectedItem.userName | properCase}} <span>{{selectedItem.officeLocation || '[HQ]'}}</span></h4>

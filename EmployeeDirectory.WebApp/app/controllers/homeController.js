@@ -37,7 +37,8 @@ app.controller('homeController', ['$scope', '$location', 'authService', 'directo
         officeLocation: "",
         officePhoneNumber: "",
         personalPhoneNumber: "",
-        emailAddress: ""
+        emailAddress: "",
+        gender: ""
     };
 
     $scope.continueRegistration = function () {

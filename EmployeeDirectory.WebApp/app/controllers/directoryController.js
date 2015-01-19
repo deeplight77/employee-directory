@@ -14,6 +14,25 @@ app.controller('directoryController', ['$scope', '$window', '$modal', '$location
         'details': '/app/views/details.html'
     };
 
+    $scope.myProfile = {};
+
+    $scope.myUserImageS = "http://www.gurucul.com/wp-content/uploads/2014/02/anonymous-user.png";
+    $scope.myUserImageL = "http://www.gurucul.com/wp-content/uploads/2014/02/anonymous-user.png";
+
+    directoryService.getDirectory($scope.authentication.userName).success(function (results) {
+
+        var myProfile = results.length > 0 ? results[0] : {};
+        var url = "http://api.randomuser.me/portraits/";
+        if (myProfile.gender == "female") {
+            $scope.myUserImageS = url + "med/women/54.jpg";
+            $scope.myUserImageL = url + "women/54.jpg"
+        }
+        else {
+            $scope.myUserImageS = url + "med/men/54.jpg";
+            $scope.myUserImageL = url + "men/54.jpg"
+        }
+    });
+
     $scope.logOut = function () {
         authService.logOut();
         $location.path('/home');
@@ -184,6 +203,7 @@ app.controller('directoryController', ['$scope', '$window', '$modal', '$location
             $scope.directory.loaderShow = true;
 
             $scope.directory.nextPage($scope.searchStr);
+            angular.element(".the-list").scroll();
         }
     });
 
