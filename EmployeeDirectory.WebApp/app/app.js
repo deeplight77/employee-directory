@@ -10,6 +10,10 @@ app.config(["$routeProvider", "$httpProvider", function ($routeProvider, $httpPr
         controller: "directoryController",
         templateUrl: "/app/views/directory.html"
     })
+    .when("/details", {
+        controller: "directoryController",
+        templateUrl: "/app/views/detailsMobile.html"
+    })
     .otherwise({ redirectTo: "/home" });
 
     $httpProvider.interceptors.push("authInterceptorService");
@@ -63,4 +67,10 @@ app.filter('phoneNumber', function () {
 
         return (country + " (" + city + ") " + number).trim();
     };
+});
+
+app.filter('properCase', function () {
+    return function (input, all) {
+        return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); }) : '';
+    }
 });

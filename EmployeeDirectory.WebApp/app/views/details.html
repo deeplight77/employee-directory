@@ -1,0 +1,26 @@
+﻿<div class="row">
+    <div class="small-12 columns">
+        <div class="row">
+            <div class="profile-card">
+                <div class="small-5 large-4 columns">
+                    <img ng-src='http://api.randomuser.me/portraits/women/{{selectedRow}}.jpg' title="Profile image" alt="Me" class="profile-image" />
+                </div>
+                <div class="small-7 large-8 columns">
+                    <h4>{{selectedItem.fullName || selectedItem.userName | properCase}} <span>{{selectedItem.officeLocation || 'Houston'}}</span></h4>
+                    <p><i class="fi-clock"></i><span> Available until 17:00 </span></p>
+                    <p><i class="fi-mail"></i><span> {{selectedItem.emailAddress || 'No email address'}} </span></p>
+                    <p><i class="fi-telephone"></i>{{selectedItem.officePhoneNumber || 'No office phone' | phoneNumber}}</p>
+                    <p><i class="fi-telephone"></i>{{selectedItem.personalPhoneNumber || 'No personal phone' | phoneNumber}}</p>
+                    <p><i class="fi-web"></i>mypersonalwebpage.com</p>
+                </div>
+                <div class="small-12 columns">
+                    <ul class="button-group even-3">
+                        <li><a href="#" class="button"> Direct reports <span>Alberto R. </span></a></li>
+                        <li><a href="#" class="button"> Reports to <span>John Lacy </span></a></li>
+                        <li><a href="#" class="button"> Changing the world for  <span>5 years</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

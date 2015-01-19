@@ -45,14 +45,13 @@ video {
     margin-bottom: 1.5rem;
     width: 100%;
     background: rgba(255,255,255,0.5);
-    height: 500px;
 }
 
 .row.center {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10%;
-	max-width: 500px;
+	max-width: 31.25rem;
 }
 
 .signup-panel {
@@ -85,9 +84,7 @@ p.title {
 	border-bottom: 1px solid #cccccc !important;
 }
 
-.content{
-	height: 450px;
-}
+
 
 .tabs dd, .tabs .tab-title {
     border: 1px solid transparent;
@@ -411,8 +408,91 @@ input[type="text"].dream-search:focus {
 }
 
 /*Entry Details*/
-.details-switch .no-details {
-    
+.details-switch.no-details {
+    font-size: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.profile-card {
+    padding-top: 15px;
+    padding-bottom: 0px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.profile-card h4 {
+    font-family: "nevis", sans-serif;
+    font-weight: 400;
+    color: #000;
+    line-height: 3rem;
+    font-size: 3rem;
+}
+
+.profile-card h4 span {
+    font-size: 20px;
+    color: #8C91A7;
+    display: block;
+}
+
+.profile-card img {
+    border-radius: 50%;
+    border: 4px solid orange;
+}
+
+.profile-card .button-group {
+    width: 101%;
+}
+
+.profile-card .button-group .button {
+    margin-bottom: 0;
+    border-top: none;
+    border-left: none;
+    border-right: 2px solid #2B2937;
+    border-bottom: none;
+    background-color: #394165;
+    height: 80px;
+    padding-top: 15px;
+    margin-top: 20px;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 26px;
+    color: #8C91A7;
+    box-shadow: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.profile-card .button-group .button span {
+    display: block;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.profile-card p {
+    font-size: 16px;
+    margin-bottom: 0;
+    color: #8C91A7;
+}
+
+.profile-card i {
+    font-size: 26px;
+    vertical-align: middle;
+    padding-right: 5px;
+    color: #394165;
+}
+
+@media only screen and (max-width: 40em) {
+
+    .profile-card h4, .profile-card p {
+        text-align: center;
+    }
+    .profile-card .button-group .button {
+        font-size: 14px;
+    }
+    .profile-card .button-group .button span {
+        font-size: 20px;
+    }
 }
 
 /*large only*/

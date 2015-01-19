@@ -5,28 +5,7 @@
         <div class="inner-wrap">
 
             <!-- HEADER SECTION -->
-            <header class="row full-width">
-                <div class="small-12 large-2 columns logo-container">
-                    <a href="http://www.headspring.com/" class="show-for-large-up">
-                        <img alt=" " src="http://www.headspring.com/sites/default/files/logo.headspring.png" class="logo-large">
-                    </a>
-                    <a href="http://www.headspring.com/" class="hide-for-large-up">
-                        <img alt="" src="http://www.headspring.com/sites/default/files/logo.headspring.png" class="logo-small">
-                    </a>
-                    <h1 class="hide-for-large-up text-center application-title">Directory</h1>
-
-                    <!-- HAMBURGER ICON -->
-                    <div class="left-off-canvas-toggle hamburger-wrapper hide-for-large-up" ng-class="{active:offCanvasOpened}">
-                        <div class="menu-toggle">
-                            <span class="bars">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="show-for-large-up large-10 columns title-container">
-                    <h1 class="application-title">Directory</h1>
-                </div>
-            </header>
+            <div ng-include="template.header"></div>
 
             <!-- OFF CANVAS MENU -->
             <aside class="left-off-canvas-menu">
@@ -55,9 +34,9 @@
                             <a ng-click="showDetails($index)" ng-repeat="item in directory.items" ng-class="{active: selectedRow == $index}">
                                 <li class="clearfix">
                                     <img ng-src="http://api.randomuser.me/portraits/thumb/women/{{$index}}.jpg" alt="thumb" class="thumbnail">
-                                    <h2>{{item.fullName || item.userName}}</h2>
-                                    <p class="desc">{{item.officeLocation}}</p>
-                                    <span class="phone">{{item.officePhoneNumber | phoneNumber}}</span>
+                                    <h2>{{item.fullName || item.userName | properCase}}</h2>
+                                    <p class="desc">{{item.officeLocation || 'Houston'}}</p>
+                                    <span class="phone">{{item.officePhoneNumber || 'No office phone' | phoneNumber}}</span>
                                     <div class="arrow-button">
                                         <span></span>
                                     </div>
@@ -73,10 +52,10 @@
                 <div class="show-for-large-up large-7 columns directory-details">
                     <div class="details-switch-container" data-ng-switch data-on="showDetailsSwitch">
                         <div class="details-switch no-details" ng-switch-when="none">
-                            Select an item from the list of employees to show detailed information.
+                            Select an item from the list of employees to the left to show detailed information.
                         </div>
                         <div class="details-switch" ng-switch-when="selected">
-
+                            <div ng-include="template.details"></div>
                         </div>
                     </div>
                 </div>

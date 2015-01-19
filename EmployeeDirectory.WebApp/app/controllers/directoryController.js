@@ -1,5 +1,6 @@
 ﻿'use strict';
-app.controller('directoryController', ['$scope', '$location', 'authService', 'directoryService', '$modal', function ($scope, $location, authService, directoryService, $modal) {
+app.controller('directoryController', ['$scope', '$window', '$modal', '$location', 'authService', 'directoryService', 'localStorageService',
+    function ($scope, $window, $modal, $location, authService, directoryService, localStorageService) {
 
     $scope.selectedRow = null;
 
@@ -8,7 +9,9 @@ app.controller('directoryController', ['$scope', '$location', 'authService', 'di
     $scope.authentication = authService.authentication;
 
     $scope.template = {
-        'directoryMenu': '/app/views/appMenu.html'
+        'header': '/app/views/header.html',
+        'directoryMenu': '/app/views/appMenu.html',
+        'details': '/app/views/details.html'
     };
 
     $scope.logOut = function () {
@@ -45,15 +48,30 @@ app.controller('directoryController', ['$scope', '$location', 'authService', 'di
 
     $scope.showDetails = function (index) {
         var item = $scope.directory.items[index];
+        $scope.selectedItem = item;
         $scope.showDetailsSwitch = "selected";
         $scope.selectedRow = index;
+
+        localStorageService.set('selectedItem', { selectedItem: $scope.selectedItem, showDetailsSwitch: $scope.showDetailsSwitch, selectedRow: $scope.selectedRow });
+
+        if (!angular.element(".directory-details").is(":visible")) {
+            $location.path('/details');
+        }
     }
+
+    $scope.$on("$routeChangeSuccess", function ($currentRoute, $previousRoute) {
+
+        var itemData = localStorageService.get('selectedItem');
+        if (itemData) {
+            $scope.selectedItem = itemData.selectedItem;
+            $scope.showDetailsSwitch = itemData.showDetailsSwitch;
+            $scope.selectedRow = itemData.selectedRow;
+        }
+    });
 
     $scope.searchStr = "";
 
     $scope.$watch('searchStr', function (tmpStr) {
-        if (!tmpStr || tmpStr.length == 0)
-            return 0;
         // if searchStr is still the same..
         // go ahead and retrieve the data
         if (tmpStr === $scope.searchStr) {
@@ -64,6 +82,13 @@ app.controller('directoryController', ['$scope', '$location', 'authService', 'di
             $scope.directory.loaderShow = true;
 
             $scope.directory.nextPage($scope.searchStr);
+        }
+    });
+
+    angular.element($window).bind("resize", function () {
+
+        if ($location.$$url == "/details") {
+            $location.path("/directory");
         }
     });
 

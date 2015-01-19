@@ -77,7 +77,7 @@ namespace EmployeeDirectory.API.Controllers
         }
 
         // POST api/Account/Remove
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, HR")]
         [Route("Remove")]
         public async Task<IHttpActionResult> Remove(UserModel userModel)
         {
@@ -109,7 +109,7 @@ namespace EmployeeDirectory.API.Controllers
         }
 
         // GET api/Account/GetRoles
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, HR")]
         [Route("GetRoles")]
         public IHttpActionResult GetRoles()
         {
@@ -125,7 +125,7 @@ namespace EmployeeDirectory.API.Controllers
         }
 
         // POST api/Account/AddRole
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, HR")]
         [Route("AddRole")]
         public async Task<IHttpActionResult> AddRole(UserModel userModel)
         {

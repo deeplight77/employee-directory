@@ -1,0 +1,23 @@
+﻿<!-- INDEX PAGE WITH HEADER -->
+<div>
+    <!-- OFF-CANVAS WRAPPER FOR APP-MENU -->
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+
+            <!-- HEADER SECTION -->
+            <div ng-include="template.header"></div>
+
+            <!-- OFF CANVAS MENU -->
+            <aside class="left-off-canvas-menu">
+                <!-- Off-canvas -->
+                <div ng-include="template.directoryMenu"></div>
+            </aside>
+
+            <!-- MAIN CONTENT -->
+            <div ng-include="template.details" class="main-content"></div>
+
+            <!-- CLOSE THE OFF-CANVAS MENU -->
+            <a class="exit-off-canvas"></a>
+        </div>
+    </div>
+</div>

@@ -100,9 +100,9 @@ namespace EmployeeDirectory.API
 
         public void InitializeUsersAndRoles()
         {
-            const string userName = "admin";
-            const string password = "adminpass";
-            const string roleName = "Admin";
+            string userName = "admin";
+            string password = "adminpass";
+            List<string> roleNames = new List<string>() { "Admin", "HR" };
 
             //Create admin user if not exists
             IdentityUser user = _userManager.FindByName(userName);
@@ -115,19 +115,21 @@ namespace EmployeeDirectory.API
                 IdentityResult result = _userManager.Create(user, password);
             }
 
-            //Create Role Admin if it does not exist
-            IdentityRole role = _roleManager.FindByName(roleName);
-            if (role == null)
-            {
-                role = new IdentityRole(roleName);
-                IdentityResult roleresult = _roleManager.Create(role);
+            //Create missing roles if it does not exist
+            foreach (string roleName in roleNames) {
+                IdentityRole role = _roleManager.FindByName(roleName);
+                if (role == null)
+                {
+                    role = new IdentityRole(roleName);
+                    IdentityResult roleresult = _roleManager.Create(role);
+                }
             }
 
             // Add user admin to Role Admin if not already added
             IList<string> rolesForUser = _userManager.GetRoles(user.Id);
-            if (!rolesForUser.Contains(role.Name))
+            if (!rolesForUser.Contains("Admin"))
             {
-                IdentityResult result = _userManager.AddToRole(user.Id, role.Name);
+                IdentityResult result = _userManager.AddToRole(user.Id, "Admin");
             }
         }
 

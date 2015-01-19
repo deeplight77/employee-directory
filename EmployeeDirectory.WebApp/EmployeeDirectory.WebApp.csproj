@@ -60,7 +60,10 @@
     <Content Include="app\controllers\directoryController.js" />
     <Content Include="app\controllers\modalDeleteController.js" />
     <Content Include="app\views\appMenu.html" />
+    <Content Include="app\views\details.html" />
+    <Content Include="app\views\detailsMobile.html" />
     <Content Include="app\views\directory.html" />
+    <Content Include="app\views\header.html" />
     <Content Include="app\views\modalDelete.html" />
     <Content Include="content\css\foundation-icons.css" />
     <Content Include="content\css\hamburger.css" />

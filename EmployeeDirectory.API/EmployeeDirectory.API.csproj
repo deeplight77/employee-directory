@@ -130,11 +130,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DirectoryController.cs" />
     <Compile Include="Entities\DirectoryEntry.cs" />
-    <Compile Include="Migrations\201501152052138_InitialCreate.cs" />
-    <Compile Include="Migrations\201501152052138_InitialCreate.Designer.cs">
-      <DependentUpon>201501152052138_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DirectoryEntryModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,11 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501152052138_InitialCreate.resx">
-      <DependentUpon>201501152052138_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

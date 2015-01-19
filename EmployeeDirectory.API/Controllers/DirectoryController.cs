@@ -87,7 +87,7 @@ namespace EmployeeDirectory.API.Controllers
         }
         
         // POST: api/Directory
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, HR")]
         [ResponseType(typeof(DirectoryEntryModel))]
         public async Task<IHttpActionResult> PostDirectoryEntryModel(DirectoryEntryModel directoryEntryModel)
         {
@@ -118,7 +118,7 @@ namespace EmployeeDirectory.API.Controllers
         }
 
         // DELETE: api/Directory/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, HR")]
         [ResponseType(typeof(DirectoryEntryModel))]
         public async Task<IHttpActionResult> DeleteDirectoryEntryModel(string id)
         {
